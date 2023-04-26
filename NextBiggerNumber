@@ -1,0 +1,53 @@
+public long test(long n){
+      int sort = 0;
+      int sort2 = 0;
+      boolean bool = true;
+      boolean bool2 = true;
+      String s = Long.toString(n);
+      String[] sa = s.split("");
+      int [] ar = new int [s.length()];
+      for(int i = 0; i<ar.length; i++){
+        ar[i] = Integer.parseInt(sa[i]);
+      }
+      for(int i = ar.length-1; i>=0; i--){
+          
+          if(i!=0&&ar[i]>ar[i-1]){
+          bool2=false;
+          int min = ar[i-1];
+          int max = ar[i];
+          int actual = ar[i];
+          for(int j=i; j<ar.length; j++){
+              if(ar[j]>min&&ar[j]<max){
+                  actual=ar[j];
+                  ar[j]=ar[i];
+                  ar[i]=actual;
+              }
+          }
+          sort=i;
+          sort2=ar[i];
+          ar[i]=ar[i-1];
+          ar[i-1]=sort2;
+          break;
+          }
+      }
+      if(bool2){return -1;}
+      
+          while(bool==true){
+              bool=false;
+        for(int j = sort; j<ar.length-1; j++){
+          if(ar[j]>ar[j+1]){
+            bool=true;
+            sort2 = ar[j];
+            ar[j]=ar[j+1];
+            ar[j+1]=sort2;
+          }
+        }
+          }
+      
+      String result="";
+      for(int i = 0; i<ar.length; i++){
+        result=result+Integer.toString(ar[i]);
+      }
+      n=Long.parseLong(result);
+      return n;
+    }
